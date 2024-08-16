@@ -100,9 +100,6 @@ public class TicketDAO {
             if(rs.next()){
                 nb = rs.getInt(1);
             }
-            else {
-            	nb = 0;
-            }
             dataBaseConfig.closeResultSet(rs);
             dataBaseConfig.closePreparedStatement(ps);
         }catch (Exception ex){

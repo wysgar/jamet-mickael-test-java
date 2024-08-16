@@ -45,7 +45,7 @@ public class ParkingService {
                 ticket.setInTime(inTime);
                 ticket.setOutTime(null);
                 ticketDAO.saveTicket(ticket);
-                if (ticketDAO.getNbTicket(vehicleRegNumber) >= 1) {
+                if (ticketDAO.getNbTicket(vehicleRegNumber) > 1) {
                 	System.out.println("Heureux de vous revoir ! En tant qu’utilisateur régulier de notre parking, vous allez obtenir une remise de 5%");
 				}
                 System.out.println("Generated Ticket and saved in DB");
@@ -105,8 +105,10 @@ public class ParkingService {
             String vehicleRegNumber = getVehichleRegNumber();
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
-            ticket.setOutTime(outTime);
-            if (ticketDAO.getNbTicket(vehicleRegNumber) >= 1)
+            if (ticket.getOutTime() == null)
+            	ticket.setOutTime(outTime);
+            
+            if (ticketDAO.getNbTicket(vehicleRegNumber) > 1)
             	fareCalculatorService.calculateFare(ticket, true);
             else
             	fareCalculatorService.calculateFare(ticket);
