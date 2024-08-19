@@ -24,10 +24,10 @@ public class FareCalculatorService {
             		ticket.setPrice(0);
             	} 
             	else if (discount == true) {
-            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR * 0.95);
+            		ticket.setPrice(Math.ceil((duration * Fare.CAR_RATE_PER_HOUR * 0.95) * 100) / 100);
 				}
             	else {
-            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
+            		ticket.setPrice(Math.ceil((duration * Fare.CAR_RATE_PER_HOUR) * 100) / 100);
 				}
                 break;
             }
@@ -36,10 +36,10 @@ public class FareCalculatorService {
             		ticket.setPrice(0);
             	}
             	else if (discount == true) {
-            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR * 0.95);
+            		ticket.setPrice(Math.ceil((duration * Fare.BIKE_RATE_PER_HOUR * 0.95) * 100) / 100);
 				}
             	else {
-            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
+            		ticket.setPrice(Math.ceil((duration * Fare.BIKE_RATE_PER_HOUR) * 100) / 100);
 				}
                 break;
             }

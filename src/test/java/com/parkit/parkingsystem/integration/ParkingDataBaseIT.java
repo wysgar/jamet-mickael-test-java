@@ -79,7 +79,7 @@ public class ParkingDataBaseIT {
         
         parkingService.processExitingVehicle();
         
-        assertNotNull(ticketDAO.getTicket("ABCDEF").getPrice());
+        assertEquals( Math.ceil((0.5 * Fare.CAR_RATE_PER_HOUR) * 100) /100 , ticketDAO.getTicket("ABCDEF").getPrice());
         assertNotNull(ticketDAO.getTicket("ABCDEF").getOutTime());
     }
     
@@ -103,8 +103,9 @@ public class ParkingDataBaseIT {
         ticketDAO.updateTicket(ticketExit);
         
         parkingService.processExitingVehicle();
+        
         assertEquals(2, ticketDAO.getNbTicket("ABCDEF"));
-        assertEquals(0.5 * Fare.CAR_RATE_PER_HOUR * 0.95, ticketDAO.getTicket("ABCDEF").getPrice());
+        assertEquals(Math.ceil((0.5 * Fare.CAR_RATE_PER_HOUR * 0.95) * 100) /100, ticketDAO.getTicket("ABCDEF").getPrice());
 	}
     
     /*@Test
